@@ -13,6 +13,8 @@ import shutil
 #import matplotlib.pyplot as plt
 #import importlib
 
+##This is the desktop by finding it
+desktop = os.path.join(os.path.join(os.path.expanduser('~')), 'Desktop')
 
 #This file makes a list that is of your favorite directories to clean, 
 #such as desktop and downloads
@@ -74,6 +76,12 @@ def saveList(hotList):
             p = p + 1
     f.close()
     
+def openList():
+    f= open("options.txt","r")
+    contents = f.read()
+    hotList = contents.split(",")
+    return hotList
+
 #Commandlist for creating, editing, and saving files based of user responses
 if fileConditonalOption:
     print("You have a file with your favorite directories currently")
@@ -110,13 +118,30 @@ if fileConditonalLog:
     f = open("log.txt","w+")
     
 
-##This is the desktop by finding it
-desktop = os.path.join(os.path.join(os.path.expanduser('~')), 'Desktop')
+
+
+
+
+
+
 
 ##This is the directory you want to clean
 try:
-    print("What file do you want to clean from? (Make sure it is competeley correct with letters and capitalization)")
-    x = input()
+    y = input("What file do you want to clean from? Is it in your list?\n")
+    if y == "yes":
+        list2 = openList()
+        printList(list2)
+        z = int(input("Type in your number\n"))
+        try :
+            x = list2[z-1]
+            print("You have chosen %s, now cleaning..." % x)
+        
+        except:
+            print("This directory doesn't exist")
+            x = input("What file do you want to clean from? (Make sure it is competeley correct with letters and capitalization)\n")
+    else:
+        print("What file do you want to clean from? (Make sure it is competeley correct with letters and capitalization)")
+        x = input()
 except ValueError:
     print("That is not a working directory.")    
     
@@ -127,7 +152,7 @@ x = os.listdir("%s" % currentDirectory)
 #might add an option to place it somewhere else by user standards
 #might add the option of asking whether to print the files that are moved.
 moveDirectory = ("%s/extensions folder" % desktop)
-print(x)
+#print(x)
        
 # version 2
 extensionList = []
@@ -180,7 +205,8 @@ for i in noDirectoryList:
                 noDirectoryList = noDirectoryList[1:]
             else:
                 print("something went wrong")
-                
+
+print("cleaned")
 extensionList.append("Total")
 
 #This is to create a plot of the files that were moves
