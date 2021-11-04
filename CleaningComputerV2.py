@@ -114,8 +114,17 @@ if fileConditonalOption == False:
     saveList(hotList)
 
 #This opens the files for reading and manipulation
-if fileConditonalLog:
+if fileConditonalLog == False:
     f = open("log.txt","w+")
+    f.close()
+    
+if fileConditonalLog == True:
+    f = open("log.txt","w+")
+    x = str(datetime.datetime.now())
+    f.write(x)
+    f.close()
+    
+    
     
 
 
