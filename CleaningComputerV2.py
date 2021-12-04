@@ -136,7 +136,7 @@ if fileConditonalLog == True:
 
 ##This is the directory you want to clean
 try:
-    y = input("What file do you want to clean from? Is it in your list?\n")
+    y = input("Is there a directory do you want to clean from? Is it in your list?\n")
     if y == "yes":
         list2 = openList()
         printList(list2)
@@ -147,9 +147,9 @@ try:
         
         except:
             print("This directory doesn't exist")
-            x = input("What file do you want to clean from? (Make sure it is competeley correct with letters and capitalization)\n")
+            x = input("What directory do you want to clean from? (Make sure it is competeley correct with letters and capitalization)\n")
     else:
-        print("What file do you want to clean from? (Make sure it is competeley correct with letters and capitalization)")
+        print("What directory do you want to clean from? (Make sure it is competeley correct with letters and capitalization)")
         x = input()
 except ValueError:
     print("That is not a working directory.")    
@@ -161,36 +161,33 @@ x = os.listdir("%s" % currentDirectory)
 #might add an option to place it somewhere else by user standards
 #might add the option of asking whether to print the files that are moved.
 moveDirectory = ("%s/extensions folder" % desktop)
-#print(x)
        
 # version 2
 extensionList = []
 noDirectoryList = []
 for i in x:
-    #print(i)
     if os.path.isdir("/Users/jaronmagana/Desktop/%s" % i):
-        #print("%s this is a directory" % i)
         u = 0
     else:
         noDirectoryList.append(i)
         extensionRaw = i.split('.')
-        #print(extensionRaw)
+        init = extensionRaw[-1]
         #creates a boolean function to make sure that the list is larger than 2
         y = len(extensionRaw)
-        if y  >= 2:
-            extension = extensionRaw[-1]
-            #print(extension)
-            extensionList.append(extension)
-            #print(extensionList)
-#      elif y > 2:
-#          print("something went wrong")
+        if init == "ini":
+            #skip
+            b = 0
         else:
-            #print("This does not have an extension")
-            u = 1
+            if y >= 2:
+                extension = extensionRaw[-1]
+                extensionList.append(extension)
+            else:
+                    u = 1
 counter = 0
 unedittedExtentionsList = extensionList
 extensionList = list(dict.fromkeys(extensionList))
 numberOfExtensionsList = []
+
 def numberOfExtensions(list1, list2):
     for i in list1:
         x = 0
