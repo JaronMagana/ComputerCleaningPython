@@ -122,17 +122,7 @@ if fileConditonalLog == True:
     f = open("log.txt","w+")
     x = str(datetime.datetime.now())
     f.write(x)
-    f.close()
-    
-    
-    
-
-
-
-
-
-
-
+    f.close()   
 
 ##This is the directory you want to clean
 try:
