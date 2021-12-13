@@ -36,7 +36,7 @@ def editList(hotList):
     edit = "no"
     while edit != "yes":
         printList(hotList)
-        decision = input("Do you want add, replace, or are you finished?\n")
+        decision = input("Do you want add, replace, or are you finished? (yes or no)\n")
         if decision == "add":
             addValue = input("What would you like to add?\n")
             hotList.append(addValue)
@@ -100,7 +100,7 @@ if fileConditonalOption:
         seeList = input("Would you like to edit your list?\n")
     
 else:
-    y = input("You currently don't have a hotlist directory\nWould you like to make one?\n")
+    y = input("You currently don't have a hotlist directory\nWould you like to make one? (yes or no)\n")
     if y == "yes" :
         lengthOfList = input("how many items would you like in your list?\n")
         lengthOfList = int(lengthOfList)
@@ -136,7 +136,7 @@ if fileConditonalLog == True:
 
 ##This is the directory you want to clean
 try:
-    y = input("Is there a directory do you want to clean from? Is it in your list?\n")
+    y = input("Is there a directory do you want to clean from? Is it in your list? (yes or no)\n")
     if y == "yes":
         list2 = openList()
         printList(list2)
